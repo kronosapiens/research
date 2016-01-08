@@ -1,0 +1,1 @@
+[General Equation of an Ellipse](http://www.maa.org/external_archive/joma/Volume8/Kalman/General.html)
