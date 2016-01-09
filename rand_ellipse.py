@@ -19,7 +19,7 @@ import numpy as np
 
 
 # Parameters
-a = 1
+a = 2
 b = 1
 alpha = 0
 
@@ -32,7 +32,7 @@ def draw_u(n=1):
 def solve_c(u, a=a, b=b, alpha=alpha):
     x, y = u[0], u[1]
     t1 = ((x*np.cos(alpha) + y*np.sin(alpha))**2) / (a**2)
-    t2 = ((x*np.sin(alpha) + y*np.cos(alpha))**2) / (b**2)
+    t2 = ((x*np.sin(alpha) - y*np.cos(alpha))**2) / (b**2)
     return 1 / np.sqrt(t1 + t2)
 
 def scale(u, a=a, b=b, alpha=alpha):
@@ -49,7 +49,8 @@ def draw():
 def plot(Z, subplot, alpha):
     '''Plot an array Z of points'''
     x, y = zip(*Z)
-    subplot.plot(x, y)
+    subplot.plot(x, y, 'x')
+    subplot.axis('equal')
     subplot.set_title(alpha)
 
 
