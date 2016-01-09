@@ -19,9 +19,9 @@ import numpy as np
 
 
 # Parameters
-a = 2
-b = 1
-alpha = 0
+a = 1
+b = 2
+alpha = np.pi/3
 
 def draw_u(n=1):
     mean = [0, 0]
@@ -40,19 +40,14 @@ def scale(u, a=a, b=b, alpha=alpha):
     z = c*u
     return z
 
-def draw():
-    u = draw_u()
-    c = solve_c(u)
-    z = c*u
-    return z
-
-def plot(Z, subplot, alpha):
+def plot(Z):
     '''Plot an array Z of points'''
     x, y = zip(*Z)
-    subplot.plot(x, y, 'x')
-    subplot.axis('equal')
-    subplot.set_title(alpha)
-
+    plt.plot(x, y, 'x')
+    plt.axis('equal')
+    plt.axhline(0, color='black')
+    plt.axvline(0, color='black')
+    plt.show()
 
 def l2_norm(z):
     return np.sqrt(sum([zi**2 for zi in z]))
@@ -63,13 +58,7 @@ if __name__ == '__main__':
 
     n = int(sys.argv[1])
     U = draw_u(n)
-
-    f, sub = plt.subplots(2, 2, sharex=True, sharey=True)
-    for k, alpha in enumerate([np.pi, np.pi/2, np.pi/4, np.pi/6]):
-        Z = [scale(u, a, b, alpha) for u in U]
-        i, j = k/2, k%2
-        plot(Z, sub[i, j], alpha)
-
-    plt.show()
+    Z = [scale(u) for u in U]
+    plot(Z)
 
 
